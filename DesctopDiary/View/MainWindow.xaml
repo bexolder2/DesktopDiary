@@ -4,10 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesctopDiary"
+        xmlns:enums="clr-namespace:DesctopDiary.ViewModel"
+       
         mc:Ignorable="d"
+        Icon="/Resources/icon.ico"
         Title="MainWindow" Height="450" Width="800"
         WindowStyle="None"
+        ResizeMode="CanResizeWithGrip" 
+        AllowsTransparency="True"
         Background="Transparent">
+
+    <Window.InputBindings>
+        <KeyBinding Modifiers="Ctrl" Key="E" Command="{Binding EditCommand}" />
+    </Window.InputBindings>
+    
     <Grid Height="450" Width="800">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -22,18 +32,33 @@
             <RowDefinition Height="30"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-
+        
         <Label Content="Date: " Grid.Row="0" Grid.Column="0"></Label>
         <Label Grid.Row="0" Grid.Column="1"></Label>
-        <Button Grid.Row="0" Grid.Column="2">
-            <Image Source="/Resources/previous_cut.png"></Image>
-        </Button>
-        <Button Grid.Row="0" Grid.Column="3">
-            <Image Source="/Resources/next_cut.png"></Image>
-        </Button>
-        <Button Content="Day" Grid.Row="0" Grid.Column="4"></Button>
-        <Button Content="Week" Grid.Row="0" Grid.Column="5"></Button>
-        <Button Content="Month" Grid.Row="0" Grid.Column="6"></Button>
-        <Frame Grid.Row="1" Grid.ColumnSpan="7" Background="AliceBlue"></Frame>
+        <Button Grid.Row="0" Grid.Column="2" Content="Previous" Command="{Binding Path=PreviousPageCommand}"></Button>
+        <Button Grid.Row="0" Grid.Column="3" Content="Next" Command="{Binding Path=NextPageCommand}"></Button>
+        <Button Content="Day" Grid.Row="0" Grid.Column="4" Command="{Binding Path=DisplayDayCommand}"></Button>
+        <Button Content="Week" Grid.Row="0" Grid.Column="5" Command="{Binding Path=DisplayWeekCommand}"></Button>
+        <Button Content="Month" Grid.Row="0" Grid.Column="6" Command="{Binding Path=DisplayMonthCommand}"></Button>
+        <Frame x:Name="MainFrame" Grid.ColumnSpan="7" 
+               Background="Transparent" Grid.Row="1" 
+               NavigationUIVisibility="Hidden"
+               >
+            <Frame.Style>
+                <Style TargetType="Frame">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding displayState}" Value="{x:Static enums:DisplayState.Day}">
+                            <Setter Property="Content" Value="{Binding Pages[0]}"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding displayState}" Value="{x:Static enums:DisplayState.Week}">
+                            <Setter Property="Content" Value="{Binding Pages[1]}"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding displayState}" Value="{x:Static enums:DisplayState.Month}">
+                            <Setter Property="Content" Value="{Binding Pages[2]}"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Frame.Style>
+        </Frame>
     </Grid>
 </Window>

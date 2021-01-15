@@ -10,17 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace DesctopDiary.View
 {
-    public partial class Day : Page
+    /// <summary>
+    /// Логика взаимодействия для EditTaskWindow.xaml
+    /// </summary>
+    public partial class EditTaskWindow : Window
     {
-        public Day()
+        public EditTaskWindow()
         {
             InitializeComponent();
-            DataContext = new ViewModel.DayViewModel();
+            DataContext = new ViewModel.EditTaskWindowViewModel();
         }
     }
 }

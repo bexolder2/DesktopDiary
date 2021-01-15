@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace DesctopDiary.View
 {
@@ -25,9 +26,30 @@ namespace DesctopDiary.View
                     return "";
                 }
             }
+            else if(parameter.ToString() == "Color")
+            {
+                if (value != null)
+                {
+                    switch (value)
+                    {
+                        case ViewModel.StatusColor.Blue:
+                            return Brushes.Blue;
+                        case ViewModel.StatusColor.Green:
+                            return Brushes.Green;
+                        case ViewModel.StatusColor.Orange:
+                            return Brushes.Orange;
+                        default:
+                            return Brushes.White;
+                    }
+                }
+                else
+                {
+                    return Brushes.White;
+                }
+            }
             else
             {
-                return "";
+                return null;
             }
         }
 

@@ -1,0 +1,40 @@
+﻿<Window x:Class="DesctopDiary.View.EditTaskWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DesctopDiary.View"
+        mc:Ignorable="d"
+        Title="EditTaskWindow" Height="200" Width="200"
+        Background="White" WindowStyle="None">
+    <Grid Height="200" Width="200">
+        <TextBlock Text="Task" Foreground="Orange" FontWeight="Bold" Margin="11,15,155,162">
+            <TextBlock.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="5" Color="Red" />
+            </TextBlock.Effect>
+        </TextBlock>
+
+        <TextBox Margin="50,10,25,162" Background="#ffffe4"></TextBox>
+
+        <TextBlock Text="Label" Foreground="Orange" FontWeight="Bold" Margin="10,53,147,124">
+            <TextBlock.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="5" Color="Red" />
+            </TextBlock.Effect>
+        </TextBlock>
+
+        <ComboBox Height="28" Margin="50,48,25,124" ItemsSource="{Binding CBData}" SelectedItem="{Binding cbSolo}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle Height="10" Width="10" Margin="3, 0">
+                            <Rectangle.Fill>
+                                <SolidColorBrush Color="{Binding LabelsColor}"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="{Binding TextConst}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+    </Grid>
+</Window>

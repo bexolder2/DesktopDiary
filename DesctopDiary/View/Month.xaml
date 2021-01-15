@@ -63,5 +63,9 @@
                    Foreground="AliceBlue">
             SUN
         </TextBlock>
+
+        <ListBox Grid.Row="1" Grid.Column="0" Style="{StaticResource ListBoxStyle1}">
+            <ListBoxItem>Month</ListBoxItem>
+        </ListBox>
     </Grid>
 </Page>

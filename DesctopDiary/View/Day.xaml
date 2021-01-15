@@ -9,7 +9,16 @@
       Title="Day">
 
     <Page.Resources>
-        <local:Converter x:Key="DateConverter" />
+        <local:Converter x:Key="MyConverter" />
+
+
+        <ControlTemplate TargetType="Button" x:Key="b">
+            <TextBlock Text="Some Task"></TextBlock>
+        </ControlTemplate>
+
+        <ControlTemplate TargetType="Button" x:Key="bx">
+            <TextBlock Text="Some Task"></TextBlock>
+        </ControlTemplate>
     </Page.Resources>
     
     <Grid>
@@ -30,7 +39,64 @@
         <TextBlock Grid.Row="0" Grid.Column="1"
                    VerticalAlignment="Center" HorizontalAlignment="Center"
                    Foreground="AliceBlue"
-                   Text="{Binding Path=CurrentDate, ConverterParameter=Date, Converter={StaticResource DateConverter}}">
+                   Text="{Binding Path=CurrentDate, ConverterParameter=Date, Converter={StaticResource MyConverter}}">
         </TextBlock>
+
+        <ListBox Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource ListBoxStyle1}">
+            <!--<ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle Height="10" Width="10">
+                            <Rectangle.Fill>
+                                <SolidColorBrush Color="{Binding statusColor, ConverterParameter=Color, Converter={StaticResource MyConverter}}"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="{Binding task}"></TextBlock>
+                        <CheckBox Height="10" Width="10"></CheckBox>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>-->
+            <ListBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Height="10" Width="10" Margin="3, 0">
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="Red"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Text="SomeText"></TextBlock>
+                    <CheckBox Margin="3, 0"></CheckBox>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="SomeText" Foreground="Green"></TextBlock>
+                    <CheckBox Margin="3, 0"></CheckBox>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="SomeText" Foreground="Orange" FontWeight="Bold">
+                        <TextBlock.Effect>
+                            <DropShadowEffect ShadowDepth="0" BlurRadius="5" Color="Red" />
+                        </TextBlock.Effect>
+                    </TextBlock>
+                    <CheckBox Margin="3, 0"></CheckBox>
+                </StackPanel>
+            </ListBoxItem>
+
+            <ListBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <Button Background="#ff9100" Content="Some Task">
+                        
+                    </Button>
+                </StackPanel>
+            </ListBoxItem>
+
+            <ListBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Some Task" Background="#757575"></Button>
+                </StackPanel>
+            </ListBoxItem>
+        </ListBox>
     </Grid>
 </Page>
