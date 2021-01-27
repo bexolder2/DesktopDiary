@@ -7,10 +7,10 @@ namespace DesctopDiary.ViewModel
 {
     public class ComboBoxData : BaseViewModel
     {
-        private Color _labelsColor;
+        private Brush _labelsColor;
         private string _textConst;
 
-        public Color LabelsColor
+        public Brush LabelsColor
         {
             get => _labelsColor;
             private set => Set(ref _labelsColor, value);
@@ -22,9 +22,10 @@ namespace DesctopDiary.ViewModel
             private set => Set(ref _textConst, value);
         }
 
-        public ComboBoxData(string text) //Color color, 
+        public ComboBoxData(string HEXcolor, string text) 
         {
-            LabelsColor = Colors.Red;
+            var converter = new BrushConverter();
+            LabelsColor = (Brush)converter.ConvertFromString(HEXcolor);
             TextConst = text;
         }
     }

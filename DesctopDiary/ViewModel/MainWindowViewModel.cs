@@ -14,22 +14,31 @@ namespace DesctopDiary.ViewModel
         public Dictionary<Data.Task, DateTime> Tasks; //TODO: add data
 
         private ObservableCollection<Page> _pages;
+        private DisplayState _displayState;
+        private DateTime _currentDateMain;
+
         public ObservableCollection<Page> Pages
         {
             get => _pages;
             private set => Set(ref _pages, value);
         }
-
-        private DisplayState _displayState;
+    
         public DisplayState displayState
         {
             get => _displayState;
             private set => Set(ref _displayState, value);
         }
+
+        public DateTime CurrentDateMain
+        {
+            get => _currentDateMain;
+            set => Set(ref _currentDateMain, value);
+        }
        
         public MainWindowViewModel()
         {
-            displayState = DisplayState.Month;
+            displayState = DisplayState.Week;
+            CurrentDateMain = DateTime.Now;
             //TODO:Serialize display state
             Tasks = new Dictionary<Data.Task, DateTime>();
             InitializePagesCollection();
@@ -101,9 +110,11 @@ namespace DesctopDiary.ViewModel
         private void OnEditCommandExecuted(object p)
         {
             //TODO: edit logic
+            //TODO: choose date for task
             EditTaskWindow etw = new EditTaskWindow();
+            etw.Owner = Application.Current.MainWindow;
             etw.Show();
-            MessageBox.Show("OnEditCommandExecuted");
+            //MessageBox.Show("OnEditCommandExecuted");
         }
         #endregion
     }

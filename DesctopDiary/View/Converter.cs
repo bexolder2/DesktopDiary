@@ -26,6 +26,23 @@ namespace DesctopDiary.View
                     return "";
                 }
             }
+            else if (parameter.ToString() == "TaskNameValidation")
+            {
+                return string.IsNullOrWhiteSpace((value ?? "").ToString()) ? false : true;
+            }
+            else if(parameter.ToString() == "DateMain")
+            {
+                if (value != null)
+                {
+                    DateTime date = (DateTime)value;
+                    string buffer = String.Format("Current date: {0:dd.MM.yyyy}", date);
+                    return buffer;
+                }
+                else
+                {
+                    return "Current date: ";
+                }
+            }
             else if(parameter.ToString() == "Color")
             {
                 if (value != null)

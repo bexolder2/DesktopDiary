@@ -65,6 +65,7 @@
     </ApplicationDefinition>
     <Compile Include="Infrastructure\Commands\BaseCommand.cs" />
     <Compile Include="Infrastructure\Commands\LambdaCommand.cs" />
+    <Compile Include="Infrastructure\Validation\NotEmptyValidation.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\DayViewModel.cs" />
     <Compile Include="ViewModel\EditTaskWindowViewModel.cs" />
@@ -82,7 +83,7 @@
     <Compile Include="View\Week.xaml.cs">
       <DependentUpon>Week.xaml</DependentUpon>
     </Compile>
-    <Page Include="Resources\Styles\ListBoxs.xaml">
+    <Page Include="Resources\Styles\ListBoxes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

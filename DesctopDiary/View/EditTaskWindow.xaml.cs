@@ -19,10 +19,20 @@ namespace DesctopDiary.View
     /// </summary>
     public partial class EditTaskWindow : Window
     {
+        ViewModel.EditTaskWindowViewModel vm;
+
         public EditTaskWindow()
         {
             InitializeComponent();
-            DataContext = new ViewModel.EditTaskWindowViewModel();
+
+            vm = new ViewModel.EditTaskWindowViewModel();
+            DataContext = vm;
+            this.tbTaskName.DataContext = vm.TmpTask;
+        }
+
+        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
     }
 }

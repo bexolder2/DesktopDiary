@@ -5,38 +5,97 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesctopDiary.View"
         xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+        xmlns:validate="clr-namespace:DesctopDiary.Infrastructure.Validation"
         mc:Ignorable="d"
-        Title="EditTaskWindow" Height="200" Width="200"
-        Background="White" WindowStyle="None" Opacity="1">
+        Title="EditTaskWindow" Height="120" Width="250"
+        Background="Transparent"
+        WindowStyle="None"
+        ResizeMode="NoResize" 
+        AllowsTransparency="True">
 
-    <Grid Height="200" Width="200">
-        <TextBlock Text="Task" Foreground="Orange" FontWeight="Bold" Margin="11,15,155,162">
+    <Window.Resources>
+        <local:Converter x:Key="MyConverter" />
+    </Window.Resources>
+    
+    <Grid Height="120" Width="250">
+        <Grid.Background>
+            <SolidColorBrush Color="White" Opacity="0.3"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Text="Task" Foreground="Orange" FontWeight="Bold" FontSize="20" 
+                   Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center"
+                   VerticalAlignment="Center" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown">
             <TextBlock.Effect>
                 <DropShadowEffect ShadowDepth="0" BlurRadius="5" Color="Red" />
             </TextBlock.Effect>
         </TextBlock>
 
-        <TextBox Margin="50,10,25,162" Background="#ffffe4"></TextBox>
+        <TextBox Grid.Row="0" Grid.Column="1" 
+                 Grid.ColumnSpan="3" Margin="5,0" Height="25"
+                 x:Name="tbTaskName">
+            <TextBox.Style>
+                <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
+                    <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+                </Style>
+            </TextBox.Style>
+            <TextBox.Text>
+                <Binding Path="task" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                    <Binding.ValidationRules>
+                        <validate:NotEmptyValidation ValidatesOnTargetUpdated="True"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 
-        <TextBlock Text="Label" Foreground="Orange" FontWeight="Bold" Margin="10,53,147,124">
+        <TextBlock Text="Label" Foreground="Orange" FontWeight="Bold" FontSize="20"
+                   Grid.Row="1" Grid.Column="0"
+                   HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock.Effect>
                 <DropShadowEffect ShadowDepth="0" BlurRadius="5" Color="Red" />
             </TextBlock.Effect>
         </TextBlock>
 
-        <ComboBox Height="28" Margin="50,48,25,124" ItemsSource="{Binding CBData}" SelectedItem="{Binding cbSolo}">
+        <ComboBox Height="28" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+                  ItemsSource="{Binding CBData}" SelectedItem="{Binding cbSolo}"
+                  Margin="5, 5">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <Rectangle Height="10" Width="10" Margin="3, 0">
-                            <Rectangle.Fill>
-                                <SolidColorBrush Color="{Binding LabelsColor, diag:PresentationTraceSources.TraceLevel=High}"/>
-                            </Rectangle.Fill>
-                        </Rectangle>
+                        <Rectangle Height="10" Width="10" Margin="3, 0" Fill="{Binding LabelsColor}"></Rectangle>
                         <TextBlock Text="{Binding TextConst}"></TextBlock>
                     </StackPanel>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
+
+        <Button Content="Save" Command="{Binding SaveCommand}"
+                Grid.Row="2" Grid.ColumnSpan="2" Margin="15, 0">
+            <Button.Style>
+                <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=tbTaskName, Path=Text, 
+                            ConverterParameter=TaskNameValidation, Converter={StaticResource MyConverter}}" Value="false">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                    <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}"/>
+                    <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueDarkBrush}"/>
+                    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Content="Cancel" Command="{Binding CancelCommand}"
+                Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="2" Margin="15, 0"></Button>
     </Grid>
 </Window>

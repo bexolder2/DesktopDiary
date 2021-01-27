@@ -10,6 +10,11 @@ namespace DesctopDiary.View
             InitializeComponent();
             DataContext = new ViewModel.MainWindowViewModel();
         }
+
+        private void Button_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
         //TODO:Setter
     }
 }

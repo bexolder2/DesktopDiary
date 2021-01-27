@@ -5,11 +5,16 @@ using DesctopDiary.View;
 
 namespace DesctopDiary.Data
 {
-    public class Task // : INotifyPropertyChanged
+    public class Task : ViewModel.BaseViewModel// : INotifyPropertyChanged
     {
-        public string task { get; private set; }
-        public DateTime Date { get; private set; }
-        public ViewModel.StatusColor statusColor { get; private set; }
+        private string _task;
+        private DateTime _date;
+        private ViewModel.StatusColor _statusColor;
+
+        public Task()
+        {
+
+        }
 
         public Task(string taskInfo, DateTime selectedDate, ViewModel.StatusColor sc)
         {
@@ -18,6 +23,23 @@ namespace DesctopDiary.Data
             statusColor = sc;
         }
 
+        public string task
+        {
+            get => _task;
+            set => Set(ref _task, value);
+        }
+
+        public DateTime Date
+        {
+            get => _date;
+            set => Set(ref _date, value);
+        }
+
+        public ViewModel.StatusColor statusColor
+        {
+            get => _statusColor;
+            set => Set(ref _statusColor, value);
+        }
         //public void SetProperties<T>(T property)
         //{
 

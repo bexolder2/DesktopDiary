@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesctopDiary"
         xmlns:enums="clr-namespace:DesctopDiary.ViewModel"
+        xmlns:convert="clr-namespace:DesctopDiary.View"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
        
         mc:Ignorable="d"
         Icon="/Resources/icon.ico"
@@ -14,6 +16,10 @@
         AllowsTransparency="True"
         Background="Transparent">
 
+    <Window.Resources>
+        <convert:Converter x:Key="MyConverter" />
+    </Window.Resources>
+    
     <Window.InputBindings>
         <KeyBinding Modifiers="Ctrl" Key="E" Command="{Binding EditCommand}" />
     </Window.InputBindings>
@@ -29,12 +35,25 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="32"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        
-        <Label Content="Date: " Grid.Row="0" Grid.Column="0"></Label>
-        <Label Grid.Row="0" Grid.Column="1"></Label>
+
+        <materialDesign:Card
+            Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" 
+            Background="{DynamicResource PrimaryHueMidBrush}"
+            Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"  
+            Height="32"
+            UniformCornerRadius="2">
+            <TextBlock
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                FontWeight="Medium" FontSize="14"
+                Text="{Binding Path=CurrentDateMain, ConverterParameter=DateMain, Converter={StaticResource MyConverter}}" 
+                MouseLeftButtonDown="Button_MouseLeftButtonDown" />
+        </materialDesign:Card>
+        <!--<Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" 
+                Content="{Binding Path=CurrentDateMain, ConverterParameter=DateMain, Converter={StaticResource MyConverter}}" 
+                MouseLeftButtonDown="Button_MouseLeftButtonDown"></Button>-->
         <Button Grid.Row="0" Grid.Column="2" Content="Previous" Command="{Binding Path=PreviousPageCommand}"></Button>
         <Button Grid.Row="0" Grid.Column="3" Content="Next" Command="{Binding Path=NextPageCommand}"></Button>
         <Button Content="Day" Grid.Row="0" Grid.Column="4" Command="{Binding Path=DisplayDayCommand}"></Button>

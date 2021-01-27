@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
+using System.Windows;
+using System.Windows.Input;
+using DesctopDiary.Infrastructure.Commands;
 
 namespace DesctopDiary.ViewModel
 {
@@ -11,6 +10,14 @@ namespace DesctopDiary.ViewModel
     {
         private List<ComboBoxData> _cbData;
         private ComboBoxData _cbSolo;
+
+        private Data.Task _task;
+
+        public Data.Task TmpTask
+        {
+            get => _task;
+            set => Set(ref _task, value);
+        }
 
         public ComboBoxData cbSolo
         {
@@ -26,22 +33,47 @@ namespace DesctopDiary.ViewModel
 
         public EditTaskWindowViewModel()
         {
+            TmpTask = new Data.Task();
+
+            SaveCommand = new LambdaCommand(OnSaveCommandExecuted, CanSaveCommandExecute);
+            CancelCommand = new LambdaCommand(OnCancelCommandExecuted, CanCancelCommandExecute);
+
             CBData = new List<ComboBoxData>();
-            InitializecbData(0, 148, 204, "Will definitely happen"); //#0094cc
-            InitializecbData(0, 178, 72, "Need to do"); //#00b248
-            InitializecbData(249, 168, 37, "It is desirable to do"); //#f9a825
+            InitializecbData("#0094cc", "Will definitely happen"); //  0, 148, 204
+            InitializecbData("#00b248", "Need to do"); //   0, 178, 72
+            InitializecbData("#f9a825", "It is desirable to do"); //   249, 168, 37
         }
 
-        private void InitializecbData(byte r, byte g, byte b, string text)
+        private void InitializecbData(string HEX, string text)
         {
-            Color tmpColor = new Color();
-            tmpColor.G = g;
-            tmpColor.R = r;
-            tmpColor.B = b;
-            SolidColorBrush tmpSolidBrush = new SolidColorBrush(tmpColor);
-            //Brush tmpBrush = tmpSolidBrush;
-            cbSolo = new ComboBoxData(text);
+            cbSolo = new ComboBoxData(HEX, text);
             CBData.Add(cbSolo);
         }
+
+
+        #region commands
+        public ICommand SaveCommand { get; private set; }
+        private bool CanSaveCommandExecute(object p) => true; //TODO: check fields
+
+        private void OnSaveCommandExecuted(object p)
+        {
+            MessageBox.Show($"{TmpTask.task} + {cbSolo.TextConst}");
+            //TODO: save date to TmpTask
+            //TODO: save logic
+        }
+
+        public ICommand CancelCommand { get; private set; }
+        private bool CanCancelCommandExecute(object p) => true;
+
+        private void OnCancelCommandExecuted(object p)
+        {
+            foreach(Window own in Application.Current.MainWindow.OwnedWindows)
+            {
+                if (own.IsActive)
+                    own.Close();
+            }
+            //Application.Current.MainWindow.OwnedWindows[0].Close();
+        }
+        #endregion
     }
 }
