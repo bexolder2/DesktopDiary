@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Input;
-using DesctopDiary.View;
-using DesctopDiary.Infrastructure.Commands;
+using DesktopDiary.View;
+using DesktopDiary.Infrastructure.Commands;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows;
 
-namespace DesctopDiary.ViewModel
+namespace DesktopDiary.ViewModel
 {
     public class MainWindowViewModel : BaseViewModel
     {

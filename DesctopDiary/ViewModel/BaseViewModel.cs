@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesctopDiary.ViewModel
+namespace DesktopDiary.ViewModel
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {

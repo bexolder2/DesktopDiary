@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace DesctopDiary.View
+namespace DesktopDiary.View
 {
     public partial class MainWindow : Window
     {

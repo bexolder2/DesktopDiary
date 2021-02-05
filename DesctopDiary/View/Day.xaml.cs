@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DesctopDiary.View
+namespace DesktopDiary.View
 {
     public partial class Day : Page
     {

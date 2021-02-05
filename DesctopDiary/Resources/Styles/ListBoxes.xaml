@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:DesctopDiary.Resources.Styles">
+                    xmlns:local="clr-namespace:DesktopDiary.Resources.Styles">
     
     <SolidColorBrush x:Key="ScrollBar.Static.Background" Color="Transparent"/>
     <SolidColorBrush x:Key="ScrollBar.Static.Border" Color="Transparent"/>

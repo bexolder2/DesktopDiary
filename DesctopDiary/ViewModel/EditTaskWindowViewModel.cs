@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
-using DesctopDiary.Infrastructure.Commands;
+using DesktopDiary.Infrastructure.Commands;
 
-namespace DesctopDiary.ViewModel
+namespace DesktopDiary.ViewModel
 {
     public class EditTaskWindowViewModel : BaseViewModel
     {

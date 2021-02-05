@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using DesctopDiary.View;
+using DesktopDiary.View;
 
-namespace DesctopDiary.Data
+namespace DesktopDiary.Data
 {
     public class Task : ViewModel.BaseViewModel// : INotifyPropertyChanged
     {

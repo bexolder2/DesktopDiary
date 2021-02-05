@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DesctopDiary.Properties
+namespace DesktopDiary.Properties
 {
 
 

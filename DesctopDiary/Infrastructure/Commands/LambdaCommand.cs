@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesctopDiary.Infrastructure.Commands
+namespace DesktopDiary.Infrastructure.Commands
 {
     public class LambdaCommand : BaseCommand
     {

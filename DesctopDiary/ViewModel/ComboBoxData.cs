@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Media;
 
-namespace DesctopDiary.ViewModel
+namespace DesktopDiary.ViewModel
 {
     public class ComboBoxData : BaseViewModel
     {

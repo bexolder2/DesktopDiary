@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace DesctopDiary.Infrastructure.Validation
+namespace DesktopDiary.Infrastructure.Validation
 {
     public class NotEmptyValidation : ValidationRule
     {

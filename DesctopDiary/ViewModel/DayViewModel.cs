@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Shapes;
 
-namespace DesctopDiary.ViewModel
+namespace DesktopDiary.ViewModel
 {
     public class DayViewModel : BaseViewModel
     {
