@@ -53,7 +53,7 @@ namespace DesktopDiary.ViewModel
 
         #region commands
         public ICommand SaveCommand { get; private set; }
-        private bool CanSaveCommandExecute(object p) => true; //TODO: check fields
+        private bool CanSaveCommandExecute(object p) => true;
 
         private void OnSaveCommandExecuted(object p)
         {

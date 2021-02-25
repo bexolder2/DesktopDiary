@@ -110,12 +110,10 @@ namespace DesktopDiary.ViewModel
         private void OnEditCommandExecuted(object p)
         {
             //TODO: edit logic
-            //TODO: choose date for task
-            //EditTaskWindow etw = new EditTaskWindow();
-            //etw.Owner = Application.Current.MainWindow;
-            //etw.Show();
+
+            
             Globals.Manager.ShowManager("edit");
-            //MessageBox.Show("OnEditCommandExecuted");
+            //TODO: Choose date Window
         }
         #endregion
     }
