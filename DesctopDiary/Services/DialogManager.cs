@@ -8,16 +8,48 @@ namespace DesktopDiary.Services
     {
         private EditTaskWindow EditWindow { get; set; }
 
-        public object ReturnValues()
+        public DialogManager()
         {
-            throw new NotImplementedException();
+            EditWindow = new EditTaskWindow();
         }
 
-        public void ShowDialog<T>(T dialog) where T : Window
+        public object ReturnValues(object data)
+        {
+            return data;
+        }
+
+        private void ShowDialog<T>(T dialog) where T : Window
         {
             dialog.Show();
         }
 
+        private void DestroyDialog<T>(T dialog) where T : Window
+        {
+            dialog.Close();
+        }
 
+        public void ShowManager(string parameter)
+        {
+            switch (parameter)
+            {
+                case "edit":
+                    ShowDialog(EditWindow);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void CloseManager(string parameter)
+        {
+            switch (parameter)
+            {
+                case "edit":
+                    DestroyDialog(EditWindow);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

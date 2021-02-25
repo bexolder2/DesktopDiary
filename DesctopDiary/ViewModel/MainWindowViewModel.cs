@@ -111,9 +111,10 @@ namespace DesktopDiary.ViewModel
         {
             //TODO: edit logic
             //TODO: choose date for task
-            EditTaskWindow etw = new EditTaskWindow();
-            etw.Owner = Application.Current.MainWindow;
-            etw.Show();
+            //EditTaskWindow etw = new EditTaskWindow();
+            //etw.Owner = Application.Current.MainWindow;
+            //etw.Show();
+            Globals.Manager.ShowManager("edit");
             //MessageBox.Show("OnEditCommandExecuted");
         }
         #endregion

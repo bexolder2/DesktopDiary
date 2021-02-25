@@ -57,9 +57,9 @@ namespace DesktopDiary.ViewModel
 
         private void OnSaveCommandExecuted(object p)
         {
-            MessageBox.Show($"{TmpTask.task} + {cbSolo.TextConst}");
+            MessageBox.Show($"Task: {TmpTask.task}\nStatus: {cbSolo.TextConst}");
+            Globals.Manager.CloseManager("edit");
             //TODO: save date to TmpTask
-            //TODO: save logic
         }
 
         public ICommand CancelCommand { get; private set; }
@@ -67,12 +67,12 @@ namespace DesktopDiary.ViewModel
 
         private void OnCancelCommandExecuted(object p)
         {
-            foreach(Window own in Application.Current.MainWindow.OwnedWindows)
-            {
-                if (own.IsActive)
-                    own.Close();
-            }
-            //Application.Current.MainWindow.OwnedWindows[0].Close();
+            //foreach(Window own in Application.Current.MainWindow.OwnedWindows)
+            //{
+            //    if (own.IsActive)
+            //        own.Close();
+            //}
+            Globals.Manager.CloseManager("edit");
         }
         #endregion
     }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DesktopDiary.Services;
 
 namespace DesktopDiary.ViewModel
 {
@@ -33,6 +29,6 @@ namespace DesktopDiary.ViewModel
 
     public static class Globals
     {
-        
+        public static DialogManager Manager = new DialogManager();
     }
 }
