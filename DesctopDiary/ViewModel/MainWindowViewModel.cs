@@ -111,9 +111,9 @@ namespace DesktopDiary.ViewModel
         {
             //TODO: edit logic
 
-            
             Globals.Manager.ShowManager("edit");
             //TODO: Choose date Window
+            //TODO: switch expression with dateView type
         }
         #endregion
     }

@@ -1,10 +1,12 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 
 namespace DesktopDiary.Services
 {
     public interface IDialogService
     {
         //void ShowDialog<T>(T dialog) where T : Window;
-        object ReturnValues(object data);
+        void SetReturnValues<T>(object data);
+        object GetReturnValues();
     }
 }
