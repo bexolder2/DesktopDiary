@@ -18,17 +18,17 @@ namespace DesktopDiary.Services
             Dates = new List<DateTime>();
         }
 
-        public void SetReturnValues<T>(object data)
+        public void SetReturnValues<T>(object data, string key)
         {
-            //return data;
+            ReturnValues.Add(key, data);
         }
-        public object GetReturnValues()
+        public object GetReturnValues(string key)
         {
-            return ReturnValues; //TODO: add ReturnValue`s index
+            return ReturnValues[key];
         }
         private void ShowDialog<T>(T dialog) where T : Window
         {
-            dialog.Show();
+            dialog.ShowDialog();
         }
 
         private void DestroyDialog<T>(T dialog) where T : Window
@@ -58,6 +58,12 @@ namespace DesktopDiary.Services
                 default:
                     break;
             }
+        }
+
+        public DateTime GetCurrentDate()
+        {
+
+            return DateTime.Now;
         }
     }
 }

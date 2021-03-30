@@ -10,7 +10,6 @@ namespace DesktopDiary.ViewModel
     {
         private List<ComboBoxData> _cbData;
         private ComboBoxData _cbSolo;
-
         private Data.Task _task;
 
         public Data.Task TmpTask
@@ -58,8 +57,20 @@ namespace DesktopDiary.ViewModel
         private void OnSaveCommandExecuted(object p)
         {
             MessageBox.Show($"Task: {TmpTask.task}\nStatus: {cbSolo.TextConst}");
+            switch (cbSolo.TextConst)
+            {
+                case "Will definitely happen":
+                    TmpTask.statusColor = StatusColor.Blue;
+                    break;
+                case "Need to do":
+                    TmpTask.statusColor = StatusColor.Green;
+                    break;
+                case "It is desirable to do":
+                    TmpTask.statusColor = StatusColor.Orange;
+                    break;
+            }
+            Globals.Manager.SetReturnValues<Data.Task>(TmpTask, "EditTaskWindow");
             Globals.Manager.CloseManager("edit");
-            //TODO: save date to TmpTask
         }
 
         public ICommand CancelCommand { get; private set; }

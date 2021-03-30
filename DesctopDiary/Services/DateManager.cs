@@ -35,6 +35,22 @@ namespace DesktopDiary.Services
             return receiver;
         }
 
+        public DateTime GetDate(string TypeVM, int DayControlIndex = 0)
+        {
+            switch (TypeVM)
+            {
+                case "DayVM":
+                    return DayVM.CurrentDate;
+                case "WeekVM":
+                    return WeekVM.dayControls[DayControlIndex].GetDate();
+                case "MonthVM":
+                    return DateTime.Now; //TODO: month`s get date logic
+                default:
+                    return DateTime.Now;
+            }
+            
+        }
+
         public void InitializeViewModels(object vm)
         {
             if(vm is DayViewModel)

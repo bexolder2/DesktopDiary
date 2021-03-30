@@ -118,7 +118,7 @@ namespace DesktopDiary.ViewModel
 
         private void OnPreviousPageCommandExecuted(object p)
         {
-            //TODO: previous navigation
+            //TODO: previous month navigation
             switch (displayState)
             {
                 case DisplayState.Day:
@@ -142,10 +142,25 @@ namespace DesktopDiary.ViewModel
 
         private void OnEditCommandExecuted(object p)
         {
-            //TODO: edit logic
+            //TODO: edit return result logic
 
             Globals.Manager.ShowManager("edit");
-            //TODO: Choose date Window
+
+            switch (displayState)
+            {
+                case DisplayState.Day:
+                    Data.Task test = Globals.Manager.GetReturnValues("EditTaskWindow") as Data.Task; //TODO: delete
+                    Tasks.Add(Globals.Manager.GetReturnValues("EditTaskWindow") as Data.Task, Globals.dateManager.GetDate("DayVM"));
+                    MessageBox.Show(Tasks[test].ToString()); //TODO: delete
+                    break;
+                case DisplayState.Week:
+                    
+                    break;
+                case DisplayState.Month:
+                    break;
+                default:
+                    break;
+            }
             //TODO: switch expression with dateView type
         }
         #endregion

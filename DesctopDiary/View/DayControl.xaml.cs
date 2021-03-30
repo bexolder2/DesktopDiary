@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 
 namespace DesktopDiary.View
 {
@@ -18,6 +19,11 @@ namespace DesktopDiary.View
         public void DayUpdater(double multiplier)
         {
             _dcvm.DayUpdater(multiplier);
+        }
+
+        public DateTime GetDate()
+        {
+            return _dcvm.DayDate;
         }
     }
 }
