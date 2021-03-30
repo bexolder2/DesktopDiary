@@ -17,6 +17,8 @@ namespace DesktopDiary.Infrastructure.Commands
         private void OnNewTaskCommandExecuted(object p)
         {
             Globals.Manager.ShowManager("edit");
+            //TODO: return values
+            //TODO: save date
         }
         #endregion
     }

@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="DesktopDiary.View.DayControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DesktopDiary.View"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <local:Converter x:Key="MyConverter" />
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <materialDesign:Card
+            Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+            Background="{DynamicResource PrimaryHueMidBrush}"
+            Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"  
+            Height="30"
+            UniformCornerRadius="2">
+            <TextBlock
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                FontWeight="Medium" FontSize="14"
+                Text="{Binding Path=DayDate, ConverterParameter=DateUC, Converter={StaticResource MyConverter}}"/>
+        </materialDesign:Card>
+        
+        <TextBlock Grid.Row="0" Grid.Column="0"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Foreground="AliceBlue"
+                   Text="{Binding Path=CurrentDay}">
+        </TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="1"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Foreground="AliceBlue"
+                   Text="{Binding Path=CurrentDate, ConverterParameter=Date, Converter={StaticResource MyConverter}}">
+        </TextBlock>
+
+        <ListBox Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource ListBoxStyle1}">
+            
+        <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle Height="10" Width="10">
+                            <Rectangle.Fill>
+                                <SolidColorBrush Color="{Binding statusColor, ConverterParameter=Color, Converter={StaticResource MyConverter}}"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="{Binding task}"></TextBlock>
+                        <CheckBox Height="10" Width="10"></CheckBox>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        
+            
+
+            <ListBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <Button Background="#ff9100" Content="Some Task">
+                        
+                    </Button>
+                </StackPanel>
+            </ListBoxItem>
+
+            <ListBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Some Task" Background="#757575"></Button>
+                </StackPanel>
+            </ListBoxItem>
+        </ListBox>
+
+        <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"  
+                Content="{materialDesign:PackIcon Kind=Plus, Size=22}"
+                Margin="5, 5" 
+                Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"></Button>
+    </Grid>
+</UserControl>

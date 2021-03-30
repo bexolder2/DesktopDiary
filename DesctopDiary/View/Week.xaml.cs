@@ -23,6 +23,9 @@ namespace DesktopDiary.View
         public Week()
         {
             InitializeComponent();
+            ViewModel.WeekViewModel _weekVM = new ViewModel.WeekViewModel();
+            DataContext = _weekVM;
+            ViewModel.Globals.dateManager.InitializeViewModels(_weekVM);
         }
     }
 }

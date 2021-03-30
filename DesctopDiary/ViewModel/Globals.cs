@@ -30,5 +30,6 @@ namespace DesktopDiary.ViewModel
     public static class Globals
     {
         public static DialogManager Manager = new DialogManager();
+        public static DateManager dateManager = new DateManager();
     }
 }

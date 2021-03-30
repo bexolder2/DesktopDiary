@@ -20,7 +20,9 @@ namespace DesktopDiary.View
         public Day()
         {
             InitializeComponent();
-            DataContext = new ViewModel.DayViewModel();
+            ViewModel.DayViewModel _dayVM = new ViewModel.DayViewModel();
+            DataContext = _dayVM;
+            ViewModel.Globals.dateManager.InitializeViewModels(_dayVM);
         }
     }
 }

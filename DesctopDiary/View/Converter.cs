@@ -43,6 +43,19 @@ namespace DesktopDiary.View
                     return "Current date: ";
                 }
             }
+            else if (parameter.ToString() == "DateUC")
+            {
+                if (value != null)
+                {
+                    DateTime date = (DateTime)value;
+                    string buffer = String.Format("{0:dd.MM.yyyy}", date);
+                    return buffer;
+                }
+                else
+                {
+                    return "Current date: ";
+                }
+            }
             else if(parameter.ToString() == "Color")
             {
                 if (value != null)

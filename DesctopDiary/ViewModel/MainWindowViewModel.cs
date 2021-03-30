@@ -13,7 +13,7 @@ namespace DesktopDiary.ViewModel
     {
         public Dictionary<Data.Task, DateTime> Tasks; //TODO: add data
 
-        private ObservableCollection<Page> _pages;
+        private ObservableCollection<Page> _pages; //???ObservableDictionary
         private DisplayState _displayState;
         private DateTime _currentDateMain;
 
@@ -46,6 +46,8 @@ namespace DesktopDiary.ViewModel
             DisplayWeekCommand = new LambdaCommand(OnDisplayWeekCommandExecuted, CanDisplayWeekCommandExecute);
             DisplayMonthCommand = new LambdaCommand(OnDisplayMonthCommandExecuted, CanDisplayMonthCommandExecute);
             EditCommand = new LambdaCommand(OnEditCommandExecuted, CanEditCommandExecute);
+            NextPageCommand = new LambdaCommand(OnNextPageCommandExecuted, CanNextPageCommandExecute);
+            PreviousPageCommand = new LambdaCommand(OnPreviousPageCommandExecuted, CanPreviousPageCommandExecute);
         }
 
         private void InitializePagesCollection()
@@ -69,7 +71,6 @@ namespace DesktopDiary.ViewModel
         private void OnDisplayDayCommandExecuted(object p)
         {
             displayState = DisplayState.Day; //TODO: add data to new page
-
         }
 
         public ICommand DisplayWeekCommand { get; private set; }
@@ -93,7 +94,23 @@ namespace DesktopDiary.ViewModel
 
         private void OnNextPageCommandExecuted(object p)
         {
-            //TODO: next navigation
+            //TODO: next (month) navigation
+            switch (displayState)
+            {
+                case DisplayState.Day:
+                    Globals.dateManager.DayVM.dayControl.DayUpdater(1);
+                    break;
+                case DisplayState.Week:
+                    for(int i = 6; i >= 0; --i)
+                    {
+                        Globals.dateManager.WeekVM.dayControls[i].DayUpdater(7);
+                    }
+                    break;
+                case DisplayState.Month:
+                    break;
+                default:
+                    break;
+            }
         }
 
         public ICommand PreviousPageCommand { get; private set; }
@@ -102,6 +119,22 @@ namespace DesktopDiary.ViewModel
         private void OnPreviousPageCommandExecuted(object p)
         {
             //TODO: previous navigation
+            switch (displayState)
+            {
+                case DisplayState.Day:
+                    Globals.dateManager.DayVM.dayControl.DayUpdater(-1);
+                    break;
+                case DisplayState.Week:
+                    for (int i = 6; i >= 0; --i)
+                    {
+                        Globals.dateManager.WeekVM.dayControls[i].DayUpdater(-7);
+                    }
+                    break;
+                case DisplayState.Month:
+                    break;
+                default:
+                    break;
+            }
         }
 
         public ICommand EditCommand { get; private set; }

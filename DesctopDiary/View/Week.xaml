@@ -20,78 +20,15 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
             <RowDefinition />
-            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"
-                   Foreground="AliceBlue">
-            MON
-        </TextBlock>
-        <TextBlock Grid.Row="0" Grid.Column="1"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"
-                   Foreground="AliceBlue">
-            TUE
-        </TextBlock>
-        <TextBlock Grid.Row="0" Grid.Column="2"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"
-                   Foreground="AliceBlue">
-            WED
-        </TextBlock>
-        <TextBlock Grid.Row="0" Grid.Column="3"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"
-                   Foreground="AliceBlue">
-            THU
-        </TextBlock>
-        <TextBlock Grid.Row="0" Grid.Column="4"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"
-                   Foreground="AliceBlue">
-            FRI
-        </TextBlock>
-        <TextBlock Grid.Row="0" Grid.Column="5"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"
-                   Foreground="AliceBlue">
-            SAT
-        </TextBlock>
-        <TextBlock Grid.Row="0" Grid.Column="6"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"
-                   Foreground="AliceBlue">
-            SUN
-        </TextBlock>
-
-        <ListBox Grid.Row="1" Grid.Column="0" Style="{StaticResource ListBoxStyle1}">
-            <ListBoxItem>Week</ListBoxItem>
-        </ListBox>
-
-        <Button Grid.Column="0" Grid.Row="2"  
-                Content="{materialDesign:PackIcon Kind=Plus, Size=22}"
-                Margin="5, 5" 
-                Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"></Button>
-        <Button Grid.Column="1" Grid.Row="2"  
-                Content="{materialDesign:PackIcon Kind=Plus, Size=22}"
-                Margin="5, 5" 
-                Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"></Button>
-        <Button Grid.Column="2" Grid.Row="2"  
-                Content="{materialDesign:PackIcon Kind=Plus, Size=22}"
-                Margin="5, 5" 
-                Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"></Button>
-        <Button Grid.Column="3" Grid.Row="2"  
-                Content="{materialDesign:PackIcon Kind=Plus, Size=22}"
-                Margin="5, 5" 
-                Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"></Button>
-        <Button Grid.Column="4" Grid.Row="2"  
-                Content="{materialDesign:PackIcon Kind=Plus, Size=22}"
-                Margin="5, 5" 
-                Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"></Button>
-        <Button Grid.Column="5" Grid.Row="2"  
-                Content="{materialDesign:PackIcon Kind=Plus, Size=22}"
-                Margin="5, 5" 
-                Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"></Button>
-        <Button Grid.Column="6" Grid.Row="2"  
-                Content="{materialDesign:PackIcon Kind=Plus, Size=22}"
-                Margin="5, 5" 
-                Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"></Button>
+        <ContentPresenter Grid.Column="0" Grid.Row="0" Content="{Binding Path=dayControls[0]}"></ContentPresenter>
+        <ContentPresenter Grid.Column="1" Grid.Row="0" Content="{Binding Path=dayControls[1]}"></ContentPresenter>
+        <ContentPresenter Grid.Column="2" Grid.Row="0" Content="{Binding Path=dayControls[2]}"></ContentPresenter>
+        <ContentPresenter Grid.Column="3" Grid.Row="0" Content="{Binding Path=dayControls[3]}"></ContentPresenter>
+        <ContentPresenter Grid.Column="4" Grid.Row="0" Content="{Binding Path=dayControls[4]}"></ContentPresenter>
+        <ContentPresenter Grid.Column="5" Grid.Row="0" Content="{Binding Path=dayControls[5]}"></ContentPresenter>
+        <ContentPresenter Grid.Column="6" Grid.Row="0" Content="{Binding Path=dayControls[6]}"></ContentPresenter>
     </Grid>
 </Page>

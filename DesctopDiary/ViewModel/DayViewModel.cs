@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DesktopDiary.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace DesktopDiary.ViewModel
     {
         private DayOfWeek _currentDay;
         private DateTime _currentDate;
+        private DayControl _dayControl;
 
 
         public DayOfWeek CurrentDay
@@ -27,10 +29,17 @@ namespace DesktopDiary.ViewModel
             private set => Set(ref _currentDate, value);
         }
 
+        public DayControl dayControl
+        {
+            get => _dayControl;
+            private set => Set(ref _dayControl, value);
+        }
+
         public DayViewModel()
         {
             CurrentDate = DateTime.Now;
             CurrentDay = DateTime.Now.DayOfWeek;
+            dayControl = new DayControl();
         }
     }
 }
