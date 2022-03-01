@@ -1,17 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DesktopDiary.View;
+using System;
 using System.Windows;
 
 namespace DesktopDiary
 {
-    /// <summary>
-    /// Логика взаимодействия для App.xaml
-    /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            this.InitializeComponent();
+        }
+
+        [STAThread]
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "5.0.6.0")]
+        public static void Main()
+        {
+            App app = new App();
+
+            MainWindow window = new MainWindow();
+            //window.DataContext = presenter;
+
+            app.Run(window);
+        }
     }
 }

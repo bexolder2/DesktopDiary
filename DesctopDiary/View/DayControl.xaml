@@ -81,6 +81,6 @@
         <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"  
                 Content="{materialDesign:PackIcon Kind=Plus, Size=22}"
                 Margin="5, 5" 
-                Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"></Button>
+                Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"></Button>
     </Grid>
 </UserControl>

@@ -14,32 +14,34 @@ namespace DesktopDiary.ViewModel
         public Dictionary<Data.Task, DateTime> Tasks; //TODO: add data
 
         private ObservableCollection<Page> _pages; //???ObservableDictionary
-        private DisplayState _displayState;
+        //private DisplayState _displayState;
         private DateTime _currentDateMain;
 
+        #region Get/Set
         public ObservableCollection<Page> Pages
         {
             get => _pages;
             private set => Set(ref _pages, value);
         }
     
-        public DisplayState displayState
-        {
-            get => _displayState;
-            private set => Set(ref _displayState, value);
-        }
+        //public DisplayState displayState
+        //{
+        //    get => _displayState;
+        //    private set => Set(ref _displayState, value);
+        //}
 
         public DateTime CurrentDateMain
         {
             get => _currentDateMain;
             set => Set(ref _currentDateMain, value);
         }
-       
+        #endregion
+
         public MainWindowViewModel()
         {
-            displayState = DisplayState.Week;
-            CurrentDateMain = DateTime.Now;
             //TODO:Serialize display state
+            Globals.displayState = DisplayState.Week;
+            CurrentDateMain = DateTime.Now;           
             Tasks = new Dictionary<Data.Task, DateTime>();
             InitializePagesCollection();
             DisplayDayCommand = new LambdaCommand(OnDisplayDayCommandExecuted, CanDisplayDayCommandExecute);
@@ -70,7 +72,7 @@ namespace DesktopDiary.ViewModel
 
         private void OnDisplayDayCommandExecuted(object p)
         {
-            displayState = DisplayState.Day; //TODO: add data to new page
+            Globals.displayState = DisplayState.Day; //TODO: add data to new page
         }
 
         public ICommand DisplayWeekCommand { get; private set; }
@@ -78,7 +80,7 @@ namespace DesktopDiary.ViewModel
 
         private void OnDisplayWeekCommandExecuted(object p)
         {
-            displayState = DisplayState.Week;
+            Globals.displayState = DisplayState.Week;
         }
 
         public ICommand DisplayMonthCommand { get; private set; }
@@ -86,7 +88,7 @@ namespace DesktopDiary.ViewModel
 
         private void OnDisplayMonthCommandExecuted(object p)
         {
-            displayState = DisplayState.Month;
+            Globals.displayState = DisplayState.Month;
         }
 
         public ICommand NextPageCommand { get; private set; }
@@ -95,7 +97,7 @@ namespace DesktopDiary.ViewModel
         private void OnNextPageCommandExecuted(object p)
         {
             //TODO: next (month) navigation
-            switch (displayState)
+            switch (Globals.displayState)
             {
                 case DisplayState.Day:
                     Globals.dateManager.DayVM.dayControl.DayUpdater(1);
@@ -119,7 +121,7 @@ namespace DesktopDiary.ViewModel
         private void OnPreviousPageCommandExecuted(object p)
         {
             //TODO: previous month navigation
-            switch (displayState)
+            switch (Globals.displayState)
             {
                 case DisplayState.Day:
                     Globals.dateManager.DayVM.dayControl.DayUpdater(-1);
@@ -143,15 +145,14 @@ namespace DesktopDiary.ViewModel
         private void OnEditCommandExecuted(object p)
         {
             //TODO: edit return result logic
-
             Globals.Manager.ShowManager("edit");
 
-            switch (displayState)
+            switch (Globals.displayState)
             {
                 case DisplayState.Day:
-                    Data.Task test = Globals.Manager.GetReturnValues("EditTaskWindow") as Data.Task; //TODO: delete
+                    Data.Task test = Globals.Manager.GetReturnValues("EditTaskWindow") as Data.Task; //TODO: delete test info
                     Tasks.Add(Globals.Manager.GetReturnValues("EditTaskWindow") as Data.Task, Globals.dateManager.GetDate("DayVM"));
-                    MessageBox.Show(Tasks[test].ToString()); //TODO: delete
+                    MessageBox.Show(Tasks[test].ToString()); //TODO: delete test info
                     break;
                 case DisplayState.Week:
                     
